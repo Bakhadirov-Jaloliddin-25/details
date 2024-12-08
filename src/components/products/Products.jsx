@@ -38,12 +38,12 @@ const Products = ({ data }) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {data?.map((product) => (
           <div
-            onClick={() => navigate(`/product/${product.id}`)}
             key={product.id}
             className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 group cursor-pointer"
           >
             <div className="relative h-48 grid place-items-center">
               <img
+                onClick={() => navigate(`/product/${product.id}`)}
                 src={
                   product.images[2] || product.images[1] || product.images[0]
                 }

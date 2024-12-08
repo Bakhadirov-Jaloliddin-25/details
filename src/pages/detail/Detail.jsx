@@ -67,7 +67,7 @@ const Detail = () => {
           {data?.images?.map((url, inx) => (
             <img
               onClick={() => setIndex(inx)}
-              className={`w-24 h-24 cursor-pointer rounded border-2 transition ${
+              className={`w-24 h-24 cursor-pointer object-contain rounded border-2 transition ${
                 index === inx
                   ? "opacity-100 border-emerald-400"
                   : "opacity-60 border-gray-300"
