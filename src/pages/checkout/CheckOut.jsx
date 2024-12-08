@@ -138,7 +138,7 @@ const CheckOut = () => {
 
           <button
             type="submit"
-            className="w-full py-3 text-lg font-semibold text-white bg-gradient-to-r from-green-400 to-blue-500 rounded-lg shadow-md hover:from-green-500 hover:to-blue-600 transition-transform transform hover:scale-105"
+            className="w-full py-3 text-lg font-semibold text-white bg-gradient-to-r from-green-500 to-emerald-700 rounded-lg shadow-md hover:from-green-400 hover:to-emerald-600 transition-transform transform hover:scale-105"
           >
             Place Order
           </button>
