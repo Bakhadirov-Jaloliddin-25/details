@@ -2,9 +2,11 @@ import React from "react";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { IoCartOutline, IoCartSharp } from "react-icons/io5";
 import { useStateValue } from "../../context";
+import { useNavigate } from "react-router-dom";
 
 const Products = ({ data }) => {
   const { setWishlist, wishlist, setCount, setCart, cart } = useStateValue();
+  const navigate = useNavigate();
 
   const handleLike = (product) => {
     const exists = wishlist.some((item) => item.id === product.id);
@@ -36,16 +38,17 @@ const Products = ({ data }) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {data?.map((product) => (
           <div
+            onClick={() => navigate(`/product/${product.id}`)}
             key={product.id}
-            className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+            className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 group cursor-pointer"
           >
-            <div className="relative group">
+            <div className="relative h-48 grid place-items-center">
               <img
                 src={
                   product.images[2] || product.images[1] || product.images[0]
                 }
                 alt={product.title}
-                className="w-full h-48 object-contain hover:scale-110 duration-300"
+                className="w-48 h-48 object-cover transform group-hover:scale-110 transition-transform duration-300"
               />
               <div className="absolute top-2 right-2 flex gap-2">
                 <button

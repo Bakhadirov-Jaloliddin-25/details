@@ -8,7 +8,10 @@ import { HiOutlineUser } from "react-icons/hi2";
 
 const Header = () => {
   return (
-    <header id="header" className="bg-white border sticky top-0 z-50">
+    <header
+      id="header"
+      className="bg-white opacity-95 border sticky top-0 z-50"
+    >
       <nav className="container flex justify-between gap-4 p-4 bg-white text-slate-900">
         <NavLink to="/" className="text-xl">
           <img src={logo} alt="Logo" />

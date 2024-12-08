@@ -9,6 +9,7 @@ import Discovery from "../pages/discovery/Discovery";
 import About from "../pages/About/About";
 import ContactUs from "../pages/contactus/ContactUs";
 import Login from "../pages/login/Login";
+import Detail from "../pages/detail/Detail";
 
 const Router = () => {
   return (
@@ -23,6 +24,7 @@ const Router = () => {
         <Route path="/wishlist" element={<Wishes />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<CheckOut />} />
+        <Route path="/product/:id" element={<Detail />} />
       </Route>
     </Routes>
   );
