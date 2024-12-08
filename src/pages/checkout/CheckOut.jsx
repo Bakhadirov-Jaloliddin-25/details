@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useStateValue } from "../../context";
 import { Navigate } from "react-router-dom";
 
@@ -7,13 +7,38 @@ const CheckOut = () => {
   const fname = useRef(null);
   const lname = useRef(null);
   const address = useRef(null);
+  const [errors, setErrors] = useState({});
 
   if (!cart.length) {
     return <Navigate replace to={"/"} />;
   }
 
+  const validate = () => {
+    const newErrors = {};
+
+    if (!fname.current.value.trim()) {
+      newErrors.fname = "First name is required.";
+    }
+
+    if (!lname.current.value.trim()) {
+      newErrors.lname = "Last name is required.";
+    }
+
+    if (!address.current.value.trim()) {
+      newErrors.address = "Address is required.";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!validate()) {
+      return;
+    }
+
     setCart([]);
     fname.current.value = "";
     lname.current.value = "";
@@ -44,10 +69,16 @@ const CheckOut = () => {
               ref={fname}
               id="fname"
               type="text"
-              required
               placeholder="John"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className={`w-full px-4 py-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 ${
+                errors.fname
+                  ? "border-red-500 focus:ring-red-400"
+                  : "border-gray-300"
+              }`}
             />
+            {errors.fname && (
+              <p className="text-sm text-red-500 mt-1">{errors.fname}</p>
+            )}
           </div>
 
           <div>
@@ -61,10 +92,16 @@ const CheckOut = () => {
               ref={lname}
               id="lname"
               type="text"
-              required
               placeholder="Doe"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className={`w-full px-4 py-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 ${
+                errors.lname
+                  ? "border-red-500 focus:ring-red-400"
+                  : "border-gray-300"
+              }`}
             />
+            {errors.lname && (
+              <p className="text-sm text-red-500 mt-1">{errors.lname}</p>
+            )}
           </div>
 
           <div>
@@ -78,10 +115,16 @@ const CheckOut = () => {
               ref={address}
               id="address"
               type="text"
-              required
               placeholder="123 Greenway Blvd"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className={`w-full px-4 py-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 ${
+                errors.address
+                  ? "border-red-500 focus:ring-red-400"
+                  : "border-gray-300"
+              }`}
             />
+            {errors.address && (
+              <p className="text-sm text-red-500 mt-1">{errors.address}</p>
+            )}
           </div>
 
           <div className="bg-gray-50 p-4 rounded-lg shadow-md">
